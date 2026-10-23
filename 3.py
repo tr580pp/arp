@@ -16,7 +16,7 @@ def two_opt_swap(route):
     new_route = route[:a] + route[a:b+1][::-1] + route[b+1:]
     return new_route
 
-def simulated_annealing(coords, T0=100, Tmin=1e-e, alpha=0.995, max_iter=20000):
+def simulated_annealing(coords, T0=100, Tmin=1e-3, alpha=0.995, max_iter=20000):
     n = len(coords)
     dist_matrix = euclidean_distance_matrix(coords)
 
