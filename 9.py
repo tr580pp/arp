@@ -35,7 +35,6 @@ def firefly_algorithm(func,
         idx = np.argsort(fitness)
         X = X[idx]
         fitness = fitness[idx]
-        B = brightness(fitness)
 
         for i in range(n_fireflies):
             for j in range(n_fireflies):
@@ -57,12 +56,12 @@ def firefly_algorithm(func,
 
         best_history.append(best_fit)
 
+        # optionally decay alpha
         alpha *= alpha_decay
 
     return best_sol, best_fit, best_history
 
 if __name__ == "__main__":
-    np.random.seed(0)
     best_sol, best_fit, history = firefly_algorithm(
         func=rastrigin,
         dim=10,
@@ -71,9 +70,9 @@ if __name__ == "__main__":
         lb=-5.12,
         ub=5.12,
         alpha=0.5,
-        alpha_decay=0.995,
+        alpha_decay=0.97,
         beta0=1.0,
-        gamma=0.5,
+        gamma=0.01,
         seed=42
     )
 
