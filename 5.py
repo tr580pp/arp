@@ -27,7 +27,7 @@ class PSO:
             if self.bounds.shape != (dim, 2):
                 raise ValueError("Bounds must match dimension")
         
-        spans = self.bounds[:, 1] - self.nounds[:, 0]
+        spans = self.bounds[:, 1] - self.bounds[:, 0]
         if vmax is None:
             self.vmax = spans.copy()
         else:
@@ -91,9 +91,9 @@ class PSO:
                 self.pbest_val[improved] = self.fitness[improved]
 
             gidx = np.argmin(self.pbest_val)
-            if self.pbase_val[gidx] < self.gbest_val:
+            if self.pbest_val[gidx] < self.gbest_val:
                 self.gbest_val = float(self.pbest_val[gidx])
-                self.gbest_val = self.pbest_pos[gidx].copy()
+                self.gbest_pos = self.pbest_pos[gidx].copy()
             
             history.append(self.gbest_val)
 
